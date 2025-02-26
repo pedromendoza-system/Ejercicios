@@ -1,0 +1,48 @@
+﻿@model ejercicio1.persona
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <h4>Persona</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <!-- Campo de Nombre -->
+        <div class="form-group row">
+            @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "col-md-2 col-form-label text-primary" }) <!-- Color de la etiqueta -->
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control bg-light" } }) <!-- Fondo claro para el campo -->
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" }) <!-- Mensaje de error en rojo -->
+            </div>
+        </div>
+
+        <!-- Campo de Apellido -->
+        <div class="form-group row">
+            @Html.LabelFor(model => model.apellido, htmlAttributes: new { @class = "col-md-2 col-form-label text-success" }) <!-- Color de la etiqueta -->
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.apellido, new { htmlAttributes = new { @class = "form-control bg-light" } })
+                @Html.ValidationMessageFor(model => model.apellido, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- Botón de Submit -->
+        <div class="form-group row">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-success">Create</button> <!-- Botón de éxito verde -->
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-warning" }) <!-- Enlace de advertencia amarillo -->
+</div>
